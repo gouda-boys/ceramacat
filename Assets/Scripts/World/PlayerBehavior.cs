@@ -15,7 +15,13 @@ public class PlayerBehavior : MonoBehaviour
     KeyCode leftKey = KeyCode.W;
 
     [SerializeField]
+    KeyCode altLeftKey = KeyCode.LeftArrow;
+
+    [SerializeField]
     KeyCode rightKey = KeyCode.D;
+
+    [SerializeField]
+    KeyCode altRightKey = KeyCode.RightArrow;
 
     Rigidbody rigidbody3d;
     bool touchingGround;
@@ -39,11 +45,11 @@ public class PlayerBehavior : MonoBehaviour
     void MoveHorizontal()
     {
         float horizontalMove = 0;
-        if (Input.GetKey(leftKey))
+        if(Input.GetKey(leftKey) || Input.GetKey(altLeftKey))
         {
             horizontalMove = -moveSpeed;
         }
-        else if (Input.GetKey(rightKey))
+        else if(Input.GetKey(rightKey) || Input.GetKey(altRightKey))
         {
             horizontalMove = moveSpeed;
         }
