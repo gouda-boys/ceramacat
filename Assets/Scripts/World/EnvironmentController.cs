@@ -5,8 +5,7 @@ public class EnvironmentController : MonoBehaviour
     [SerializeField]
     float scrollSpeed = 1;
 
-    [SerializeField]
-    float canvasWidth = 14;
+   
 
     PlatformBehavior[] platforms;
 
@@ -32,6 +31,6 @@ public class EnvironmentController : MonoBehaviour
 
     public void FlagForRespawn(PlatformBehavior platform)
     {
-        platform.transform.position += Vector3.right * canvasWidth;
+//        platform.transform.position += Vector3.right * canvasWidth;
     }
 }

@@ -30,7 +30,15 @@ public class PlayerBehavior : MonoBehaviour
     {
         if(Input.GetKeyDown(jumpKey))
         {
-            rigidbody3d.velocity += Vector3.up * jumpHeight;
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2f))
+            {
+                rigidbody3d.velocity += Vector3.up * jumpHeight;
+            } else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, 2f))
+            {
+                rigidbody3d.velocity += Vector3.up * jumpHeight;
+            }
+
         }
         float horizontalMove = 0;
         if(Input.GetKey(leftKey))
