@@ -15,10 +15,17 @@ public class PlayerBehavior : MonoBehaviour
     KeyCode leftKey = KeyCode.W;
 
     [SerializeField]
+    KeyCode altLeftKey = KeyCode.LeftArrow;
+
+    [SerializeField]
     KeyCode rightKey = KeyCode.D;
 
-    Rigidbody rigidbody3d;
+    [SerializeField]
+    KeyCode altRightKey = KeyCode.RightArrow;
 
+    Rigidbody rigidbody3d;
+    bool touchingGround;
+     
     // Start is called before the first frame update
     void Start()
     {
@@ -28,19 +35,38 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(jumpKey))
+        if(touchingGround && Input.GetKeyDown(jumpKey))
         {
-            rigidbody3d.velocity += Vector3.up * jumpHeight;
+            Jump();
         }
+        MoveHorizontal();
+    }
+
+    void MoveHorizontal()
+    {
         float horizontalMove = 0;
-        if(Input.GetKey(leftKey))
+        if(Input.GetKey(leftKey) || Input.GetKey(altLeftKey))
         {
             horizontalMove = -moveSpeed;
         }
-        else if(Input.GetKey(rightKey))
+        else if(Input.GetKey(rightKey) || Input.GetKey(altRightKey))
         {
             horizontalMove = moveSpeed;
         }
         rigidbody3d.velocity = new Vector3(horizontalMove, rigidbody3d.velocity.y, rigidbody3d.velocity.z);
+    }
+
+    void Jump()
+    {
+        rigidbody3d.velocity += Vector3.up * jumpHeight;
+        touchingGround = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.GetComponent<PlatformBehavior>())
+        {
+            touchingGround = true;
+        }
     }
 }
