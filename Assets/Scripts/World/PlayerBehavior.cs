@@ -69,4 +69,12 @@ public class PlayerBehavior : MonoBehaviour
             touchingGround = true;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<TrampolineBehavior>())
+        {
+            Debug.Log("HIT TRAMPOLINE");
+        }
+    }
 }
