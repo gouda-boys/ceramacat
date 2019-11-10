@@ -23,6 +23,9 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField]
     KeyCode altRightKey = KeyCode.RightArrow;
 
+    [SerializeField]
+    float maxDistanceToTouchSurface = 10f;
+
     Rigidbody rigidbody3d;
      
     // Start is called before the first frame update
@@ -37,10 +40,10 @@ public class PlayerBehavior : MonoBehaviour
         if(Input.GetKeyDown(jumpKey))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2f))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, maxDistanceToTouchSurface))
             {
                 rigidbody3d.velocity += Vector3.up * jumpHeight;
-            } else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, 2f))
+            } else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, maxDistanceToTouchSurface))
             {
                 rigidbody3d.velocity += Vector3.up * jumpHeight;
             }
