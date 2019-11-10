@@ -7,6 +7,7 @@ public class vaseBreaker : MonoBehaviour
     AudioSource audioSource;
     public GameObject vaseShard;
     private bool vaseBroken;
+    public GameObject vasePartsParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,27 +26,28 @@ public class vaseBreaker : MonoBehaviour
         {
             if (!vaseBroken)
             {
-                Debug.Log(collision.gameObject.tag);
+            //    Debug.Log(collision.gameObject.tag);
 
-                Debug.Log(collision.relativeVelocity.magnitude);
+//               Debug.Log(collision.relativeVelocity.magnitude);
                 if (collision.relativeVelocity.magnitude > 5)
                 {
                     //   audioSource.Play();
                 }
                 //break vase
-                GameObject vs1 = Instantiate(vaseShard, transform);
-                vs1.AddComponent<Rigidbody>();
-                vs1.GetComponent<Rigidbody>().AddForce(new Vector3(1, 1, 1) * 5);
+                //GameObject vs1 = Instantiate(vaseShard, vasePartsParent.transform);
+                //vs1.AddComponent<Rigidbody>();
+                //vs1.GetComponent<Rigidbody>().AddForce(new Vector3(1, 1, 1) * 5);
 
-                GameObject vs2 = Instantiate(vaseShard, transform);
-                vs2.AddComponent<Rigidbody>();
-                vs2.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 1, 1) * 5);
+                //GameObject vs2 = Instantiate(vaseShard, vasePartsParent.transform);
+                //vs2.AddComponent<Rigidbody>();
+                //vs2.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 1, 1) * 5);
 
-                GameObject vs3 = Instantiate(vaseShard, transform);
-                vs3.AddComponent<Rigidbody>();
-                vs3.GetComponent<Rigidbody>().AddForce(new Vector3(1, 1, -1) * 5);
+                //GameObject vs3 = Instantiate(vaseShard, vasePartsParent.transform);
+                //vs3.AddComponent<Rigidbody>();
+                //vs3.GetComponent<Rigidbody>().AddForce(new Vector3(1, 1, -1) * 5);
 
-
+                gameObject.AddComponent<TriangleExplosion>();
+                StartCoroutine(gameObject.GetComponent<TriangleExplosion>().SplitMesh(true));
                 vaseBroken = true;
             }
             else
