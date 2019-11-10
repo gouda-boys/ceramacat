@@ -60,7 +60,7 @@ public class CatMover : MonoBehaviour
 
         //cat body movement
         //range .2f
-        spine1.transform.localPosition = Vector3.MoveTowards(spine1.transform.localPosition, spine1Original - .25f * new Vector3(0, 0, originalZDiff - (frontLeftFoot.transform.localPosition.z - geckoCapsule.transform.position.z)), .01f);
+        spine1.transform.localPosition = Vector3.MoveTowards(spine1.transform.localPosition, spine1Original - .4f * new Vector3(0, 0, originalZDiff - (frontLeftFoot.transform.localPosition.z - geckoCapsule.transform.position.z)), .01f);
 
 
     }
