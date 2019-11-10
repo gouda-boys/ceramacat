@@ -10,7 +10,7 @@ ScriptedImporter:
   script: {fileID: 232528478, guid: 43a8bbf65be290d44ba52b94476242b9, type: 3}
   version: 23
   mGraphInstanceData:
-  - graphLabel: New_Graph
+  - graphLabel: New_Graph_1
     prototypeName: New_Graph
     graphDescIndex: 0
     generateAllOutputs: 0
@@ -20,11 +20,11 @@ ScriptedImporter:
     shaderName: Standard
     materialProperties:
       shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-      shaderKeywords: _MAINTEX _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP
+      shaderKeywords: _MAINTEX _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP _SPECGLOSSMAP
       lightmapFlags: 4
       texEnvs:
       - name: _BumpMap
-        texture: {fileID: -4428681996180148168, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
+        texture: {fileID: -5470591451350772120, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
           type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
@@ -45,7 +45,7 @@ ScriptedImporter:
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _MainTex
-        texture: {fileID: -854894313060519166, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
+        texture: {fileID: -3533171479036894793, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
           type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
@@ -54,12 +54,12 @@ ScriptedImporter:
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _OcclusionMap
-        texture: {fileID: -2105344006743568590, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
+        texture: {fileID: 2609647728908975252, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
           type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _ParallaxMap
-        texture: {fileID: -6635210339956795980, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
+        texture: {fileID: -3800272330290234612, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
           type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
@@ -174,23 +174,23 @@ ScriptedImporter:
         from: 0
         to: 3
     textureParameters:
-    - textureName: New_Graph - diffuse
+    - textureName: New_Graph_1 - diffuse
       wrapMode: 0
       filterMode: 1
       aniso: 1
-    - textureName: New_Graph - normal
+    - textureName: New_Graph_1 - normal
       wrapMode: 0
       filterMode: 1
       aniso: 1
-    - textureName: New_Graph - specular
+    - textureName: New_Graph_1 - specular
       wrapMode: 0
       filterMode: 1
       aniso: 1
-    - textureName: New_Graph - height
+    - textureName: New_Graph_1 - height
       wrapMode: 0
       filterMode: 1
       aniso: 1
-    - textureName: New_Graph - ambientOcclusion
+    - textureName: New_Graph_1 - ambientOcclusion
       wrapMode: 0
       filterMode: 1
       aniso: 1
@@ -205,10 +205,10 @@ ScriptedImporter:
       textureFormatMode: 0
       normalCompressed: 0
       bGenerateOnLoad: 1
-    material: {fileID: -2125774551491969924, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
+    material: {fileID: -5190446062849793222, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e,
       type: 3}
     generatedTextures:
-    - {fileID: -854894313060519166, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
-    - {fileID: -4428681996180148168, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
-    - {fileID: -6635210339956795980, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
-    - {fileID: -2105344006743568590, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
+    - {fileID: -3533171479036894793, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
+    - {fileID: -5470591451350772120, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
+    - {fileID: -3800272330290234612, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
+    - {fileID: 2609647728908975252, guid: 5ecaf0c2fc1cd45f4958e1211fd5ce7e, type: 3}
