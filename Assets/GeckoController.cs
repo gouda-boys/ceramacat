@@ -14,6 +14,9 @@ public class GeckoController : MonoBehaviour
     [SerializeField] LegStepper backLeftLegStepper;
     [SerializeField] LegStepper backRightLegStepper;
 
+
+    public bool isJumping;
+
     void Awake()
     {
         StartCoroutine(LegUpdateCoroutine());
@@ -49,31 +52,45 @@ public class GeckoController : MonoBehaviour
         );
     }
 
+
+
     IEnumerator LegUpdateCoroutine()
     {
         // Run forever
         while (true)
         {
-            // Try moving one diagonal pair of legs
-            do
+            if (!isJumping)
             {
-                frontLeftLegStepper.TryMove();
-                backRightLegStepper.TryMove();
-                // Wait a frame
-                yield return null;
+                // Try moving one diagonal pair of legs
+                do
+                {
+                    frontLeftLegStepper.TryMove();
+                    backRightLegStepper.TryMove();
+                    // Wait a frame
+                    yield return null;
 
-                // Stay in this loop while either leg is moving.
-                // If only one leg in the pair is moving, the calls to TryMove() will let
-                // the other leg move if it wants to.
-            } while (backRightLegStepper.Moving || frontLeftLegStepper.Moving);
+                    // Stay in this loop while either leg is moving.
+                    // If only one leg in the pair is moving, the calls to TryMove() will let
+                    // the other leg move if it wants to.
+                } while (backRightLegStepper.Moving || frontLeftLegStepper.Moving);
 
-            // Do the same thing for the other pair
-            do
+                // Do the same thing for the other pair
+                do
+                {
+                    frontRightLegStepper.TryMove();
+                    backLeftLegStepper.TryMove();
+                    yield return null;
+                } while (backLeftLegStepper.Moving || frontRightLegStepper.Moving);
+            }
+            else
             {
-                frontRightLegStepper.TryMove();
-                backLeftLegStepper.TryMove();
+                frontRightLegStepper.Jump();
+                frontLeftLegStepper.Jump();
+                backLeftLegStepper.Jump();
+                backRightLegStepper.Jump();
                 yield return null;
-            } while (backLeftLegStepper.Moving || frontRightLegStepper.Moving);
+                //each leg goes to its jump position
+            }
         }
     }
 }
