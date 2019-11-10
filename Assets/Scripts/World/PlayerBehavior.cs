@@ -24,7 +24,6 @@ public class PlayerBehavior : MonoBehaviour
     KeyCode altRightKey = KeyCode.RightArrow;
 
     Rigidbody rigidbody3d;
-    bool touchingGround;
      
     // Start is called before the first frame update
     void Start()
@@ -35,9 +34,16 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(touchingGround && Input.GetKeyDown(jumpKey))
+        if(Input.GetKeyDown(jumpKey))
         {
-            Jump();
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2f))
+            {
+                rigidbody3d.velocity += Vector3.up * jumpHeight;
+            } else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, 2f))
+            {
+                rigidbody3d.velocity += Vector3.up * jumpHeight;
+            }
         }
         MoveHorizontal();
     }
@@ -54,19 +60,5 @@ public class PlayerBehavior : MonoBehaviour
             horizontalMove = moveSpeed;
         }
         rigidbody3d.velocity = new Vector3(horizontalMove, rigidbody3d.velocity.y, rigidbody3d.velocity.z);
-    }
-
-    void Jump()
-    {
-        rigidbody3d.velocity += Vector3.up * jumpHeight;
-        touchingGround = false;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.GetComponent<PlatformBehavior>())
-        {
-            touchingGround = true;
-        }
     }
 }
