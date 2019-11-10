@@ -11,12 +11,14 @@ public class CatMover : MonoBehaviour
     public GameObject spine1;
     public Vector3 spine1Original;
     public float forwardPower;
-    public float jumpPower;
+    public float jumpPower1;
+    public float jumpPower2;
     public float currentSpeed;
     public GameObject frontLeftFoot;
     public float originalZDiff;
     public jump jump;
-    
+    public float spaceCounter;
+    public bool jumpPrepping;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,16 +29,35 @@ public class CatMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (jumpPrepping)
+        {
+            spaceCounter++;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
+            spaceCounter = 0;
+            jumpPrepping = true;
+           
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            Debug.Log(spaceCounter);
+            jumpPrepping = false;
             if (!geckoController.isJumping)
             {
                 StartCoroutine(jumpHold());
-                rb.velocity = Vector3.zero;
-                rb.AddForce(Vector3.up * jumpPower * Time.deltaTime);
+                if (spaceCounter < 30)
+                {
+                    rb.velocity = Vector3.up * jumpPower1;
+                }
+                else
+                {
+                    rb.velocity = Vector3.up * jumpPower2;
+                }
+                //rb.AddForce(Vector3.up * (jumpPower + Mathf.Clamp (spaceCounter * 4, 0, 120)));
                 StartCoroutine(jumpRotate());
             }
+            spaceCounter = 0;
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
@@ -61,7 +82,7 @@ public class CatMover : MonoBehaviour
 
         //cat body movement
         //range .2f
-        //spine1.transform.localPosition = Vector3.MoveTowards(spine1.transform.localPosition, spine1Original - .1f * new Vector3(0, 0, originalZDiff - (frontLeftFoot.transform.localPosition.z - geckoCapsule.transform.position.z)), .01f);
+       // spine1.transform.localPosition = Vector3.MoveTowards(spine1.transform.localPosition, spine1Original - .2f * new Vector3(0, 0, originalZDiff - (frontLeftFoot.transform.localPosition.z - geckoCapsule.transform.position.z)), .31f);
 
 
     }
