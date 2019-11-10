@@ -6,6 +6,7 @@ public class LegStepper : MonoBehaviour
 {
     // The position and rotation we want to stay in range of
     [SerializeField] Transform homeTransform;
+    [SerializeField] Transform jumpTransform;
     // Stay within this distance of home
     [SerializeField] float wantStepAtDistance;
     // How long a step takes to complete
@@ -22,13 +23,20 @@ public class LegStepper : MonoBehaviour
         float distFromHome = Vector3.Distance(transform.position, homeTransform.position);
 
         // If we are too far off in position or rotation
-//        Debug.Log(distFromHome);
+        //        Debug.Log(distFromHome);
         if (distFromHome > wantStepAtDistance)
         {
             // Start the step coroutine
             StartCoroutine(Move());
         }
     }
+
+    public void Jump()
+    {
+        //NEED TO LERP THIS
+        transform.position = jumpTransform.position; 
+    }
+
 
     [SerializeField] float stepOvershootFraction;
 
