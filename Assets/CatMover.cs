@@ -6,6 +6,8 @@ public class CatMover : MonoBehaviour
 {
     public GeckoController geckoController;
     public GameObject geckoCapsule;
+    public GameObject geckoHip;
+    public Rigidbody rb;
     public GameObject spine1;
     public Vector3 spine1Original;
     public float forwardPower;
@@ -13,7 +15,8 @@ public class CatMover : MonoBehaviour
     public float currentSpeed;
     public GameObject frontLeftFoot;
     public float originalZDiff;
-    public IEnumerator currentJump;
+    public jump jump;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,32 +29,38 @@ public class CatMover : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(jumpHold());
-            currentJump = jumpArc();
-            StartCoroutine(currentJump);
 
-         
-}
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            geckoCapsule.transform.position += transform.forward * forwardPower;
-}
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            geckoCapsule.transform.position -= transform.forward * forwardPower / 2;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (currentJump != null)
+            if (!geckoController.isJumping)
             {
-                StopCoroutine(currentJump);
-}
-
+                StartCoroutine(jumpHold());
+                rb.AddForce(Vector3.up * 23000.0f * Time.deltaTime);
+                StartCoroutine(jumpRotate());
+            }
         }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            geckoCapsule.transform.position += geckoCapsule.transform.forward * forwardPower;
+        }
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            geckoCapsule.transform.position -= geckoCapsule.transform.forward * forwardPower;
+        }
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            //THIS LINE HERE 
+           // Debug.Log(geckoCapsule.transform.eulerAngles.y);
+
+            geckoCapsule.transform.localRotation = Quaternion.Euler(geckoCapsule.transform.eulerAngles.x, geckoCapsule.transform.eulerAngles.y - 2, geckoCapsule.transform.eulerAngles.z);
+        }
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            geckoCapsule.transform.localRotation = Quaternion.Euler(geckoCapsule.transform.eulerAngles.x, geckoCapsule.transform.eulerAngles.y + 2, geckoCapsule.transform.eulerAngles.z);
+        }
+
 
         //cat body movement
         //range .2f
-        spine1.transform.localPosition = spine1Original - .05f * new Vector3(0, 0, frontLeftFoot.transform.localPosition.z - geckoCapsule.transform.position.z);
+        spine1.transform.localPosition = Vector3.MoveTowards(spine1.transform.localPosition, spine1Original - .25f * new Vector3(0, 0, originalZDiff - (frontLeftFoot.transform.localPosition.z - geckoCapsule.transform.position.z)), .01f);
 
 
     }
@@ -59,25 +68,27 @@ public class CatMover : MonoBehaviour
     IEnumerator jumpHold()
     {
         geckoController.isJumping = true;
-        yield return new WaitForSeconds(.1f);
-        geckoController.isJumping = false;
+        yield return new WaitForSeconds(.02f);
+        geckoController.isJumping = true;
     }
 
-    IEnumerator jumpArc()
+    IEnumerator jumpRotate()
     {
-        float jumpStartTime = Time.time;
-        float jumpStartY = geckoCapsule.transform.position.y;
-        while(true)
+        yield return new WaitForSeconds(.01f);
+        geckoHip.transform.localRotation = Quaternion.Euler(-30, geckoHip.transform.localRotation.y, geckoHip.transform.localRotation.z);
+        yield return new WaitForSeconds(.1f);
+        geckoHip.transform.localRotation = Quaternion.Euler(-30, geckoHip.transform.localRotation.y, geckoHip.transform.localRotation.z);
+        float rotationX = -30;
+        while (rotationX < 30)
         {
-            Debug.Log(Time.time - jumpStartTime);
-            geckoCapsule.transform.position = new Vector3(geckoCapsule.transform.position.x, jumpStartY + (-Mathf.Pow(5 * (Time.time - jumpStartTime), 2) + (10 * (Time.time - jumpStartTime))), geckoCapsule.transform.position.z);
+            if (jump.isColliding)
+            {
+                break;
+            }
+
+            rotationX += .5f;
+            geckoHip.transform.localRotation = Quaternion.Euler(rotationX, geckoHip.transform.localRotation.y, geckoHip.transform.localRotation.z);
             yield return new WaitForSeconds(.01f);
-
-}
-
-        //−0.2000𝑥2+2.000𝑥
-
+        }
     }
-
-
 }

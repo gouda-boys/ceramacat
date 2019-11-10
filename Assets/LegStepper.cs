@@ -11,9 +11,26 @@ public class LegStepper : MonoBehaviour
     [SerializeField] float wantStepAtDistance;
     // How long a step takes to complete
     [SerializeField] float moveDuration;
-
+    public CatMover catMover;
     // Is the leg moving?
     public bool Moving;
+
+    public void Start()
+    {
+        //switch (catMover.forwardPower)
+        //{
+        //    case .15f :
+        //        wantStepAtDistance = catMover.forwardPower * 26;
+        //        break;
+        //    case .04f:
+        //        wantStepAtDistance = catMover.forwardPower * 8;
+        //        break;
+        //    default:
+        //        wantStepAtDistance  = catMover.forwardPower * 13;
+        //        break;
+        //}
+
+    }
 
     public void TryMove()
     {

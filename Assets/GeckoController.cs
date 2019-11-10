@@ -14,6 +14,7 @@ public class GeckoController : MonoBehaviour
     [SerializeField] LegStepper backLeftLegStepper;
     [SerializeField] LegStepper backRightLegStepper;
 
+
     public bool isJumping;
 
     void Awake()
@@ -50,6 +51,8 @@ public class GeckoController : MonoBehaviour
             1 - Mathf.Exp(-headTrackingSpeed * Time.deltaTime)
         );
     }
+
+
 
     IEnumerator LegUpdateCoroutine()
     {
