@@ -31,7 +31,7 @@ public class jump : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isColliding = true;
-        Debug.Log("collision Enter");
+///        Debug.Log("collision Enter");
         if (geckoController.isJumping)
         {
             geckoController.isJumping = false;
@@ -43,5 +43,10 @@ public class jump : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         isColliding = false;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        isColliding = true;
     }
 }

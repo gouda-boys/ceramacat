@@ -19,6 +19,7 @@ public class CatMover : MonoBehaviour
     public jump jump;
     public float spaceCounter;
     public bool jumpPrepping;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +38,7 @@ public class CatMover : MonoBehaviour
         {
             spaceCounter = 0;
             jumpPrepping = true;
-           
+
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
