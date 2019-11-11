@@ -32,13 +32,10 @@ public class vaseBreaker : MonoBehaviour
 
             if (!vaseBroken)
             {
-            //    Debug.Log(collision.gameObject.tag);
+                //    Debug.Log(collision.gameObject.tag);
 
-//               Debug.Log(collision.relativeVelocity.magnitude);
-                if (collision.relativeVelocity.magnitude > 5)
-                {
-                    //   audioSource.Play();
-                }
+                audioSource.Play();
+                //               Debug.Log(collision.relativeVelocity.magnitude);
                 //break vase
                 //GameObject vs1 = Instantiate(vaseShard, vasePartsParent.transform);
                 //vs1.AddComponent<Rigidbody>();
