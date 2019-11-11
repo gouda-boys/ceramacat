@@ -24,6 +24,12 @@ public class vaseBreaker : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            IntroVaseTriggerScene triggerScene = GetComponent<IntroVaseTriggerScene>();
+            if (triggerScene)
+            {
+                triggerScene.LoadMainScene();
+            }
+
             if (!vaseBroken)
             {
             //    Debug.Log(collision.gameObject.tag);
@@ -50,17 +56,6 @@ public class vaseBreaker : MonoBehaviour
                 StartCoroutine(gameObject.GetComponent<TriangleExplosion>().SplitMesh(true));
                 vaseBroken = true;
             }
-            else
-            {
-                //vase is broken
-                Destroy(this.gameObject);
-            }
-            IntroVaseTriggerScene triggerScene = GetComponent<IntroVaseTriggerScene>();
-            if (triggerScene)
-            {
-                triggerScene.LoadMainScene();
-            }
-
         }
     }
 }
