@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class IntroVaseTriggerScene : MonoBehaviour
@@ -11,6 +12,13 @@ public class IntroVaseTriggerScene : MonoBehaviour
 
     public void LoadMainScene()
     {
+        StartCoroutine(waitToLoad());
+    }
+
+    IEnumerator waitToLoad()
+    {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("house");
     }
+
 }
