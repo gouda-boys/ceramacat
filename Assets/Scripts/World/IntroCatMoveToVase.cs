@@ -22,6 +22,10 @@ public class IntroCatMoveToVase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!vase)
+        {
+            return;
+        }
         if(Vector3.Distance(transform.position, vase.transform.position) > distanceFromVase)
         {
             transform.position = Vector3.MoveTowards(transform.position, vase.transform.position, moveSpeed);
