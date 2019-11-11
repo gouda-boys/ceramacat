@@ -22,17 +22,20 @@ public class vaseBreaker : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
+            IntroVaseTriggerScene triggerScene = GetComponent<IntroVaseTriggerScene>();
+            if (triggerScene)
+            {
+                triggerScene.LoadMainScene();
+            }
+
             if (!vaseBroken)
             {
-            //    Debug.Log(collision.gameObject.tag);
+                //    Debug.Log(collision.gameObject.tag);
 
-//               Debug.Log(collision.relativeVelocity.magnitude);
-                if (collision.relativeVelocity.magnitude > 5)
-                {
-                    //   audioSource.Play();
-                }
+                audioSource.Play();
+                //               Debug.Log(collision.relativeVelocity.magnitude);
                 //break vase
                 //GameObject vs1 = Instantiate(vaseShard, vasePartsParent.transform);
                 //vs1.AddComponent<Rigidbody>();
@@ -50,17 +53,8 @@ public class vaseBreaker : MonoBehaviour
                 StartCoroutine(gameObject.GetComponent<TriangleExplosion>().SplitMesh(true));
                 vaseBroken = true;
             }
-            else
-            {
-                //vase is broken
-                Destroy(this.gameObject);
-            }
         }
-
-
     }
-
-
 }
 
 public static class MathUtilities
