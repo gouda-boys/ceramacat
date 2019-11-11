@@ -22,7 +22,7 @@ public class vaseBreaker : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             if (!vaseBroken)
             {
@@ -55,12 +55,14 @@ public class vaseBreaker : MonoBehaviour
                 //vase is broken
                 Destroy(this.gameObject);
             }
+            IntroVaseTriggerScene triggerScene = GetComponent<IntroVaseTriggerScene>();
+            if (triggerScene)
+            {
+                triggerScene.LoadMainScene();
+            }
+
         }
-
-
     }
-
-
 }
 
 public static class MathUtilities
