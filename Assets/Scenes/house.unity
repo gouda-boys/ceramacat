@@ -2156,11 +2156,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: old man jenkis animated
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 3e2b89a40f9274dd9b482dd9230c9b2d,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 185ad0fe441561547bac250303bd05f3, type: 2}
     - target: {fileID: -4216859302048453862, guid: 3e2b89a40f9274dd9b482dd9230c9b2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2216,11 +2211,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -2416733968201007103, guid: 3e2b89a40f9274dd9b482dd9230c9b2d,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2b5005917bba5413084d525da9c8fbbb, type: 2}
     - target: {fileID: -1521188297522644312, guid: 3e2b89a40f9274dd9b482dd9230c9b2d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2231,6 +2221,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 16255c57fcf214d79a80406ddd2febe0, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 3e2b89a40f9274dd9b482dd9230c9b2d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 185ad0fe441561547bac250303bd05f3, type: 2}
+    - target: {fileID: -2416733968201007103, guid: 3e2b89a40f9274dd9b482dd9230c9b2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b5005917bba5413084d525da9c8fbbb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e2b89a40f9274dd9b482dd9230c9b2d, type: 3}
 --- !u!1 &294862447 stripped
@@ -16382,7 +16382,7 @@ MonoBehaviour:
   rb: {fileID: 1614300850}
   spine1: {fileID: 984478161}
   spine1Original: {x: 0, y: 0, z: 0}
-  forwardPower: 0.04
+  forwardPower: 0.07
   jumpPower1: 4.5
   jumpPower2: 6
   currentSpeed: 0
